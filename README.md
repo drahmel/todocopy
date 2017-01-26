@@ -2,8 +2,6 @@
 
 Todo Copy is a single-file Python app for batch execution of commands. For example, TC can dump a SQL database, zip that file and other files in a specified source path, and then send everything to an FTP site. Batch files are XML-based.
 
-Current version: 1.3.48 (use Subversion on the Source tab for the lastest version)
-
 Execute at the command line with this syntax to see execution examples:
 
 > python todocopy.py examples
@@ -12,7 +10,7 @@ Execute at the command line with this syntax to see execution examples:
 
 The goals of the Todo Copy project are:
 
-*   Single file -- Most batch and build systems require many files and dependencies. The plan is to make sure SC is only one file, so it can be easily uploaded, included with distributions, and run without installation.
+*   Single file -- Most batch and build systems require many files and dependencies. The plan is to make sure TC is only one file, so it can be easily uploaded, included with distributions, and run without installation.
 *   Command line and library options -- All library functions (such as PySVN) will also have the SVN command-line equivalents. That way a system that doesn't have the library installed will still have the functions available.
 *   Includes all basic batch operations -- Allows scripting of all popular batch operations including file copy, zip, transfer (FTP, SCP, etc.), remote control of other systems with SSH, full knowledge of SVN, CVS, MySQL, and other programs.
 
@@ -39,5 +37,4 @@ The goals of the Todo Copy project are:
 # Project Information
 
 *   License: [GNU Lesser GPL](http://www.gnu.org/licenses/lgpl.html)
-*   svn-based source control
 
