@@ -102,8 +102,8 @@ class todocopy:
         self.tags['TIME'] = strftime("%H%M")
         curMonth = 5
         curYear = 2009
-        self.tags['FIRSTDAY'] = self.firstDay(curMonth,curYear)
-        self.tags['LASTDAY'] = self.lastDay(curMonth,curYear)
+        #self.tags['FIRSTDAY'] = self.firstDay(curMonth,curYear)
+        #self.tags['LASTDAY'] = self.lastDay(curMonth,curYear)
         self.tags['COUNTER'] = 0
         if self.curOS()=='linux':
             self.tags['COLOR_RED'] = '\033[0;31m'
@@ -709,7 +709,7 @@ class todocopy:
                                     logPathArray.append(pathItem.childNodes.item(0).nodeValue)
                             revMessages[entryRev] = {'date':logDate,'msg':msg,'paths':logPathArray}
                             for mypath in logPathArray:
-                                                if mypath not in totalPaths:
+                                if mypath not in totalPaths:
                                     totalPaths[mypath] = 1
             #print revMessages
             print "___________ Logs ___________"
@@ -1311,21 +1311,21 @@ class todocopy:
             dumpFile = ''
             pathMySQL = 'mysql' #os.path.normpath(os.path.join(self.props['path_mysql'],'mysql'))
             destHost = self.props.get('dest_db_host','')
-                        destUsername = self.props.get('dest_db_username','')
-                        destPassword = self.props.get('dest_db_password','')
-                        destPort =  self.props.get('dest_db_port','')
-                        destSocket =  self.props.get('dest_db_socket','')
+            destUsername = self.props.get('dest_db_username','')
+            destPassword = self.props.get('dest_db_password','')
+            destPort =  self.props.get('dest_db_port','')
+            destSocket =  self.props.get('dest_db_socket','')
 
             if destHost:
                 destHost = " -h " + destHost
-                        if destUsername:
-                                destUsername = " -u " + destUsername
-                        if destPassword:
-                                destPassword = " -p" + destPassword
-                        if destPort:
-                                destPort = ' -P'+destPort+' '
-                        if destSocket:
-                                destSocket = ' --socket='+destSocket+' '
+            if destUsername:
+                    destUsername = " -u " + destUsername
+            if destPassword:
+                    destPassword = " -p" + destPassword
+            if destPort:
+                    destPort = ' -P'+destPort+' '
+            if destSocket:
+                    destSocket = ' --socket='+destSocket+' '
             pipeDir = " | "+pathMySQL+" "+destHost+destUsername+destPassword+destPort+destSocket+" "+destDB
 
         socketStr = self.props.get('db_socket','')
@@ -1341,25 +1341,23 @@ class todocopy:
         importFiles = inAttr.get('path','')
         print "Importing:"+self.props['db_name'] + " " + importFiles
         if True:
-                        destHost = self.props.get('dest_db_host','')
-                        destUsername = self.props.get('dest_db_username','')
-                        destPassword = self.props.get('dest_db_password','')
+            destHost = self.props.get('dest_db_host','')
+            destUsername = self.props.get('dest_db_username','')
+            destPassword = self.props.get('dest_db_password','')
             destPort =  self.props.get('dest_db_port','')
-                        destSocket =  self.props.get('dest_db_socket','')
+            destSocket =  self.props.get('dest_db_socket','')
 
 
-                        if destHost:
-                                destHost = " -h " + destHost
-                        if destUsername:
-                                destUsername = " -u " + destUsername
-                        if destPassword:
-                                destPassword = " -p" + destPassword
+            if destHost:
+                    destHost = " -h " + destHost
+            if destUsername:
+                    destUsername = " -u " + destUsername
+            if destPassword:
+                    destPassword = " -p" + destPassword
             if destPort:
                 destPort = ' -P'+destPort
-                        if destSocket:
-                                destSocket = ' --socket='+destSocket
-
-
+            if destSocket:
+                    destSocket = ' --socket='+destSocket
 
             importFiles = " " +os.path.join(self.props['destPath'],importFiles)
             pathMySQL = os.path.join(self.props['path_mysql'],'mysqlimport')
