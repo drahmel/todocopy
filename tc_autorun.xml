@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project minimum_tc_version="1.1" name="Autorun this file if no file is specified"
+	description="These commands will execution if no batch file or other commands are passed."
+	default="compile" basedir="." >
+	<!-- Set global parameters -->
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='120' />
+	<property name='destPath' value='/var/www/html/images/' />
+	<property name='path_mysql' value='' />
+	<tag name='mytag' value='123'/>
+	<tag name='home' value='./' />
+
+	<mysql action='query' db_host='localhost' db_name='mysql' username='root' password='password'
+		query='SELECT User, Host FROM user' msg='Querying the user database' />
+	<exec value='dir' reporterror='1' />
+	<pause />
+</project>

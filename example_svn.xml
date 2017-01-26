@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project minimum_sc_version="1.2" name="svn_recurse" description="Performs a recursive SVN log" default="compile" basedir="." 
+	example="todocopy.py example_svn.xml" >
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='120' />
+
+	<!--Set working directory-->
+	<workingdir action='set' value='C:/Documents and Settings/danr/workspace/svntest' />
+	<svn enabled='0' action='status' />
+	<!--Set a simple SVN property-->
+	<svn action='property' name='svn:keywords' value='Rev Id Author Date' path='../../SonicFlashcards_scratch/assets/test.xml' />
+	<!--Set a multi-level SVN property-->
+	<svn action='property' name='svn:ignore' value='.htaccess \n readme.txt \n' path='../../SonicFlashcards_scratch/assets/decks/' />
+	
+	<!--Display log entries for all subfolders of the working directory -->
+	<svn action='log' recurse='1' src='.' revstr='-r75:85' />
+	<log msg='Executed svn features ' toscreen='1' tofile='0' />
+</project>

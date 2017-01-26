@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project minimum_sc_version="1.2" name="db_summary"
+	description="Execute 3 different versions of the dbsummary command on a database"
+	default="compile" basedir="." >
+	<!--Copy YHW dev files to production checkout-->
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='8' />
+	<property name='path_mysql' value='' />
+
+	
+	<!-- Perform a complete db summary on the database -->
+	<dbsummary db_host='localhost' db_name='MYDB' db_username='USERNAME' db_password='PASSWORD' pausebetween='1'
+		msg='Performing a summary on the db' output='dbsummary_all.xml' />
+	<log toscreen='1' msg='Completed #1 db summary: all to dbsummary_all.xml' />
+	<!-- Perform a db summary two tables in the database -->
+	<dbsummary db_host='localhost' db_name='MYDB' db_username='USERNAME' db_password='PASSWORD' tablelist='tblogs,tbtasks'
+		msg='Performing a summary on the db' output='dbsummary_2tables.xml' />
+	<log toscreen='1' msg='Completed #2 db summary: only 2 tables to: dbsummary_2tables.xml' />
+	<!-- Perform a db summary EXCLUDING two tables in the database -->
+	<dbsummary db_host='localhost' db_name='MYDB' db_username='USERNAME' db_password='PASSWORD' excludelist='tblogs,tbtasks'
+		msg='Performing a summary on the db' output='dbsummary_2exclude.xml' />
+	<log toscreen='1' msg='Completed #3 db summary for exclude to: dbsummary_2exclude.xml' />
+
+</project>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project minimum_sc_version="1.1" name="execute_targets"
+	description="Simple demonstration of using various target executes including execbefore/depends and execafter attributes."
+	default="showdirall" basedir="." >
+	
+	<!--Setup basic properties-->
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='120' />
+	<property name='destPath' value='' />
+	<property name='path_mysql' value='' />
+
+	<!--Setup basic tags-->
+	<tag name='donttag' value='Check out this:{mytag}'/>
+	<tag name='mytag' value='Easy as 123 on {DATE}'/>
+	<tag name='anothertag' value='Check out this:{mytag}'/>
+	<tag name='home' value='.\' />
+
+	<log msg='Available targets: {availabletargets} ' toscreen='1' tofile='0' date='0' />
+
+	
+	<!--This demonstrates the use of tag replaced EVEN IN target strings of execbefore/execafter/depends -->
+	<tag name='targetlist' value='showdir1,showdir2,showdir3' />
+	
+	<!--This is the default target - it will execute other targets-->
+	<target name="showdirall" description="Display directory of first path" execbefore='{targetlist}'>
+		<log msg='Completed all 3 targets' toscreen='1' tofile='0' />
+	</target>
+
+	
+	
+	<!--Subtargets-->
+	<target name="showdir1" description="Display directory of first path" execafter='showdir'>
+		<log msg='Executing showdir1' toscreen='1' tofile='0' />
+		<tag name='home' value='.\' />
+	</target>
+	
+	<target name="showdir2" description="Display directory of second path" execafter='showdir'>
+		<log msg='Executing showdir2' toscreen='1' tofile='0' />
+		<tag name='home' value='..\' />
+	</target>
+
+	<target name="showdir3" description="Display directory of third path" depends='setvars' execafter='showdir'>
+		<log msg='Executing showdir3' toscreen='1' tofile='0' />
+	</target>
+
+	<target name="setvars" description="Set the home tag">
+		<log msg='Executing setvars' toscreen='1' tofile='0' />
+		<tag name='home' value='..\..\' />
+	</target>
+	
+	<!--This is a target called by the other targets-->	
+	<target name="showdir" description="Display directory">
+		<exec value='dir {home}' reporterror='1' />
+		<log msg='Executed dir listing - {home} ' toscreen='1' tofile='0' />
+	</target>
+	
+</project>

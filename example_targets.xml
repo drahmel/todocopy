@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project minimum_sc_version="1.1" name="execute_targets"
+	description="Simple demonstration of using various target executes including execbefore/depends and execafter attributes."
+	default="showdir1" basedir="." >
+	
+	<!--Setup basic properties-->
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='120' />
+	<property name='destPath' value='' />
+	<property name='path_mysql' value='' />
+
+	<!--Setup basic tags-->
+	<tag name='donttag' value='Check out this:{mytag}'/>
+	<tag name='mytag' value='Easy as 123 on {DATE}'/>
+	<tag name='anothertag' value='Check out this:{mytag}'/>
+	<tag name='home' value='.\' />
+
+	<log msg='Available targets: {availabletargets} ' toscreen='1' tofile='0' date='0' />
+
+	<!--This is the default target specified in the project tag-->
+	<target name="showdir1" description="Display directory of first path" execafter='showdir'>
+		<tag name='home' value='.\' />
+	</target>
+	
+	<!--This is the target that can be executed from the command line-->
+	<target name="showdir2" description="Display directory of second path" execafter='showdir'>
+		<tag name='home' value='..\' />
+	</target>
+
+	<!--This is the target uses both the execbefore/depends and execafter attributes-->
+	<target name="showdir3" description="Display directory of third path" depends='setvars' execafter='showdir'>
+		<log msg='Empty shell' toscreen='1' tofile='0' />
+	</target>
+
+	<target name="setvars" description="Set the home tag">
+		<tag name='home' value='..\..\' />
+	</target>
+	
+	<!--This is a target called by the other 2 targets-->	
+	<target name="showdir" description="Display directory">
+		<exec value='dir {home}' reporterror='1' />
+		<log msg='Executed dir listing - {home} ' toscreen='1' tofile='0' />
+	</target>
+	
+</project>

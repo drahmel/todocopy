@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<project minimum_tc_version="1.1" name="gettingstarted" description="Simple demonstration of a Todo Copy script.">
+	
+	<log msg='Hello to the World on {DATE}' toscreen='1' tofile='1' date='0' output='mylog_{TIME}.txt' />
+
+</project>

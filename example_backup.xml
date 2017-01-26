@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project minimum_tc_version="1.1" name="Backup to hard drive"
+	description="Copies all of the files from working copy base production checkout"
+	default="compile" basedir="." >
+	<!--Copy YHW dev files to production checkout-->
+	<property name='replace_tags' value='1' />
+	<property name='src' value='./' />
+	<property name='reportSampleFreq' value='40' />
+	<property name='destPath' value='E:/T60BU/' />
+	<property name='path_mysql' value='C:/"Program Files"/MySQL/"MySQL Server 5.0"/bin' />
+	<tag name='mytag' value='123'/>
+	<tag name='home' value='./' />
+
+	<copysrc='./' dest='../yhw_production_checkout/' />
+	<mysql action='dump' db_host='localhost' db_name='goalseeker' username='root' password='password' dest_file='GoalSeekerDBBU_{DATE}_{TIME}.sql' />
+	<zip src='C:/SVN_Repository/' dest='E:/T60BU/' archiveFile='T60_SVN_REPOBU_{DATE}_{TIME}'  />
+	<zip src='C:/DataT60/JoomlaAdv/' dest='E:/T60BU/' archiveFile='T60_JOOMLA_ADV_{DATE}_{TIME}'  />
+
+	<ftp enabled='0' src='./' dest='192.168.10.205'  />
+	<pause />
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<project minimum_tc_version="1.1" name="Send an email from a script"
+	description="Sends an email either using sendmail or SMTP"
+	default="compile" basedir="." >
+	<!--Send email through SendMail -->
+	<email from='test@example.com' to='dest@example.com' subject='Welcome to Smart Copy' body='Hope you like it!\n' />
+	<log msg='Sent test email ' toscreen='1' />
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project minimum_tc_version="1.1" name="Generate crontab strings"
+	description="Generates crontab output from human-readable parameters"
+	default="compile" basedir="." >
+
+	<!--Execute the crontab job every year at 2:15pm on 12/25-->
+	<crontab month='12' day='25' hour='14' min='15' />
+	<!--Execute the crontab job every week at 1:06am every Thursday -->
+	<crontab hour='1' min='6' dayofweek='Thursday' />
+	<!--Execute the crontab job every minute year of 2am every Thursday -->
+	<crontab hour='2' dayofweek='thu' />
+	<!--Execute the crontab job at 2:00am,4:00am,6:00am,8:00am every Wednesday -->
+	<crontab hour='2,4,6,8' min='0' dayofweek='wed' />
+	<!--Execute the crontab job every year at 2:15pm on 12/25 and log it to christmasCron.log -->
+	<crontab month='12' day='25' hour='14' min='15' log='christmasCron.log' />
+	<!--Execute the crontab job every year at 2:15pm on 12/25 and report it nowhere -->
+	<crontab month='12' day='25' hour='14' min='15' log='/dev/null 2&gt;&amp;1' />
+	<!--Execute the crontab job every year at 2:15pm on 12/25-->
+	<crontab month='12' day='25' hour='14' min='15' cmd='/etc/merrychristmas.py' />
+
+	<!--Execute the crontab job every week at 1:06am every Thursday -->
+	<crontab hour='16' min='17' dayofweek='wed' cmd='/var/www/python smartcopy.py /var/www/python/sc_buwiki.xml' log='/var/www/sc_cron.log' />
+	<log msg='Crontab examples' toscreen='1' />
+
+</project>
